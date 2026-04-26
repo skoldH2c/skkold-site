@@ -2,215 +2,147 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SkKolD Mixer</title>
 
 <style>
-body{
-    margin:0;
-    font-family:Arial;
-    color:white;
-    overflow:hidden;
-    background:black;
+
+/* إعدادات عامة /
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
 }
 
-/*  لودر /
-#loader{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:black;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    z-index:9999;
+/ الخلفية الاحترافية /
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: url('bg.jpg') no-repeat center center;
+    background-size: cover;
+
+    filter: brightness(0.7) contrast(1.1) saturate(1.2);
+    z-index: -2;
+
+    animation: zoomEffect 20s infinite alternate ease-in-out;
 }
 
-.bar{
-    width:300px;
-    height:5px;
-    background:#222;
-    margin-top:20px;
+/ طبقة سوداء احترافية /
+body::after {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+    z-index: -1;
 }
 
-.fill{
-    width:0%;
-    height:100%;
-    background:red;
-    animation:load 3s forwards;
+/ حركة خفيفة /
+@keyframes zoomEffect {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
 }
 
-@keyframes load{
-    to{width:100%;}
+/ العنوان /
+.title {
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 120px;
+
+    text-shadow: 0 0 10px #fff,
+                 0 0 20px red,
+                 0 0 40px red;
+
+    animation: glow 2s infinite alternate;
 }
 
-/  فيديو /
-video{
-    position:fixed;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    z-index:-2;
+@keyframes glow {
+    from { text-shadow: 0 0 10px #fff; }
+    to { text-shadow: 0 0 30px red; }
 }
 
-.overlay{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.7);
-    z-index:-1;
+/ زر التحميل /
+.download-btn {
+    display: block;
+    margin: 40px auto;
+    padding: 15px 40px;
+    font-size: 20px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+    box-shadow: 0 0 15px red;
+    transition: 0.3s;
 }
 
-/  العنوان /
-h1{
-    font-size:60px;
-    color:red;
-    text-shadow:0 0 20px red;
-    animation:glitch 1s infinite;
+.download-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px red;
 }
 
-@keyframes glitch{
-    0%{text-shadow:2px 2px red;}
-    50%{text-shadow:-2px -2px white;}
-    100%{text-shadow:2px -2px red;}
+/ الكتابة الجانبية */
+.side-text {
+    position: fixed;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+
+    color: white;
+    font-size: 14px;
+    opacity: 0.7;
+
+    animation: moveText 3s infinite alternate;
 }
 
-/  سلايدر /
-.slider{
-    margin-top:40px;
-    overflow:hidden;
+@keyframes moveText {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
 }
 
-.slides{
-    display:flex;
-    animation:slide 15s infinite;
-}
-
-.slides img{
-    width:280px;
-    margin:10px;
-    border-radius:10px;
-}
-
-@keyframes slide{
-    0%{transform:translateX(0);}
-    50%{transform:translateX(-50%);}
-    100%{transform:translateX(0);}
-}
-
-/  زر /
-button{
-    padding:15px 40px;
-    font-size:20px;
-    background:red;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    box-shadow:0 0 20px red;
-    transition:0.3s;
-}
-
-button:hover{
-    transform:scale(1.1);
-    box-shadow:0 0 40px red;
-}
-
-.container{
-    text-align:center;
-    margin-top:120px;
-}
-
-/  النص الجانبي */
-.side-text{
-    position:fixed;
-    right:15px;
-    top:50%;
-    transform:translateY(-50%) rotate(90deg);
-    transform-origin:right;
-    font-family:monospace;
-    font-size:14px;
-    letter-spacing:2px;
-    color:#ff0000;
-    opacity:0.8;
-
-    text-shadow:
-        0 0 5px #ff0000,
-        0 0 10px #ff0000,
-        0 0 20px #ff0000,
-        0 0 40px #ff0000;
-
-    animation: glowMove 3s infinite alternate;
-}
-
-@keyframes glowMove{
-    0%{
-        transform:translateY(-50%) rotate(90deg) translateX(0);
-        opacity:0.6;
-    }
-    50%{
-        transform:translateY(-50%) rotate(90deg) translateX(-10px);
-        opacity:1;
-    }
-    100%{
-        transform:translateY(-50%) rotate(90deg) translateX(0);
-        opacity:0.6;
-    }
-}
 </style>
 </head>
 
 <body>
 
-<!--  لودر -->
-<div id="loader">
-    <h2>Loading SkKolD...</h2>
-    <div class="bar">
-        <div class="fill"></div>
-    </div>
-</div>
+<h1 class="title">SkKolD Mixer</h1>
 
-<!--  فيديو -->
-<video autoplay muted loop>
-<source src="https://cdn.coverr.co/videos/coverr-recording-music-5176/1080p.mp4">
-</video>
+<button class="download-btn" onclick="startDownload()">Download</button>
 
-<div class="overlay"></div>
-
-<div class="container">
-    <h1>SkKolD Mixer</h1>
-    <p>أفضل تجربة صوت احترافية </p>
-
-    <button onclick="download()">تحميل الآن</button>
-
-    <div class="slider">
-        <div class="slides">
-            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d">
-            <img src="https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2">
-            <img src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc">
-            <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81">
-        </div>
-    </div>
-</div>
-
-<!--  النص الجانبي -->
 <div class="side-text">
-    Developed by Dis User i5qg
+Programmed by Dis User i5qg
 </div>
-
-<!--  صوت -->
-<audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
 
 <script>
-setTimeout(()=>{
-    document.getElementById("loader").style.display="none";
-},3000);
 
-function download(){
-    document.getElementById("clickSound").play();
-    setTimeout(()=>{
-        window.location.href="download.html";
-    },500);
+function startDownload() {
+
+    let seconds = 5;
+    let btn = document.querySelector(".download-btn");
+
+    let interval = setInterval(() => {
+        btn.innerText = "Wait " + seconds + "s...";
+        seconds--;
+
+        if (seconds < 0) {
+            clearInterval(interval);
+            btn.innerText = "Downloading...";
+
+            // ضع رابط البرنامج هنا
+            window.location.href = "your-program.exe";
+        }
+    }, 1000);
 }
+
 </script>
 
 </body>
