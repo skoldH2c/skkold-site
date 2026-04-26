@@ -1,14 +1,39 @@
 <!DOCTYPE html>
-<html>
-<body style="background:black;color:white;text-align:center;font-family:Arial">
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>تحميل</title>
 
-<h1>شكراً لتحميلك </h1>
-<p>سيبدأ التحميل تلقائياً...</p>
+<style>
+body {
+    background:black;
+    color:white;
+    text-align:center;
+    font-family:Arial;
+}
+
+button {
+    padding:15px 40px;
+    font-size:20px;
+    background:red;
+    border:none;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>اضغط للتحميل</h1>
+
+<button onclick="download()">تحميل البرنامج</button>
 
 <script>
-setTimeout(()=>{
-    window.location.href="SkKolD-Mixer.zip";
-},2000);
+function download(){
+    window.location.href = "SkKolD-Mixer.zip";
+}
 </script>
 
 </body>
