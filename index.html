@@ -61,7 +61,7 @@ video{
     z-index:-1;
 }
 
-/  نص /
+/  العنوان /
 h1{
     font-size:60px;
     color:red;
@@ -119,6 +119,43 @@ button:hover{
     text-align:center;
     margin-top:120px;
 }
+
+/  النص الجانبي */
+.side-text{
+    position:fixed;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%) rotate(90deg);
+    transform-origin:right;
+    font-family:monospace;
+    font-size:14px;
+    letter-spacing:2px;
+    color:#ff0000;
+    opacity:0.8;
+
+    text-shadow:
+        0 0 5px #ff0000,
+        0 0 10px #ff0000,
+        0 0 20px #ff0000,
+        0 0 40px #ff0000;
+
+    animation: glowMove 3s infinite alternate;
+}
+
+@keyframes glowMove{
+    0%{
+        transform:translateY(-50%) rotate(90deg) translateX(0);
+        opacity:0.6;
+    }
+    50%{
+        transform:translateY(-50%) rotate(90deg) translateX(-10px);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-50%) rotate(90deg) translateX(0);
+        opacity:0.6;
+    }
+}
 </style>
 </head>
 
@@ -155,15 +192,19 @@ button:hover{
     </div>
 </div>
 
+<!--  النص الجانبي -->
+<div class="side-text">
+    Developed by Dis User i5qg
+</div>
+
+<!--  صوت -->
 <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387"></audio>
 
 <script>
-/  إخفاء اللودر /
 setTimeout(()=>{
     document.getElementById("loader").style.display="none";
 },3000);
 
-/  صوت */
 function download(){
     document.getElementById("clickSound").play();
     setTimeout(()=>{
@@ -174,4 +215,3 @@ function download(){
 
 </body>
 </html>
-
