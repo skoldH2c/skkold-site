@@ -175,19 +175,3 @@ function download(){
 </body>
 </html>
 
-<script>
-// منع كلك يمين
-document.addEventListener('contextmenu', e => e.preventDefault());
-
-// منع F12
-document.onkeydown = function(e) {
-    if (e.keyCode == 123) return false;
-};
-
-// منع Ctrl+Shift+I
-document.addEventListener('keydown', function(e) {
-    if (e.ctrlKey && e.shiftKey && e.key === 'I') {
-        e.preventDefault();
-    }
-});
-</script>
