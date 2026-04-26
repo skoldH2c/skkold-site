@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>Download</title>
+
+<style>
+body {background:black;color:white;text-align:center;font-family:Arial;}
+.btn {padding:15px 40px;background:red;border:none;color:white;font-size:20px;}
+</style>
+</head>
+
+<body>
+
+<h1>تحميل SkKolD Mixer</h1>
+<p>عدد التحميلات: <span id="count">0</span></p>
+
+<button class="btn" onclick="download()">تحميل مباشر</button>
+
+<script>
+// عداد وهمي (Local)
+let count = localStorage.getItem("downloads") || 0;
+document.getElementById("count").innerText = count;
+
+function download(){
+    count++;
+    localStorage.setItem("downloads", count);
+    window.location.href="thanks.html";
+}
+</script>
+
+</body>
+</html>
