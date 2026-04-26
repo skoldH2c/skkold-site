@@ -2,7 +2,8 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>تحميل البرنامج</title>
+<title>تحميل</title>
+
 <style>
 body {
     background:black;
@@ -12,21 +13,12 @@ body {
 }
 
 .box {
-    margin-top:100px;
+    margin-top:150px;
 }
 
-button {
-    padding:15px 40px;
-    font-size:20px;
-    background:red;
-    color:white;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-}
-
-button:hover {
-    background:darkred;
+#count {
+    font-size:50px;
+    color:red;
 }
 </style>
 </head>
@@ -34,15 +26,22 @@ button:hover {
 <body>
 
 <div class="box">
-    <h1>⬇ تحميل SkKolD Mixer</h1>
-    <p>اضغط الزر للتحميل المباشر</p>
-    <button onclick="download()">تحميل الآن</button>
+    <h1>جاري تجهيز التحميل...</h1>
+    <div id="count">5</div>
 </div>
 
 <script>
-function download(){
-    window.location.href = "SkKolD-Mixer.zip";
-}
+let c = 5;
+
+let timer = setInterval(()=>{
+    c--;
+    document.getElementById("count").innerText = c;
+
+    if(c == 0){
+        clearInterval(timer);
+        window.location.href = "thanks.html";
+    }
+},1000);
 </script>
 
 </body>
