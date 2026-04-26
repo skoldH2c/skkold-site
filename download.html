@@ -2,30 +2,46 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>Download</title>
-
+<title>تحميل البرنامج</title>
 <style>
-body {background:black;color:white;text-align:center;font-family:Arial;}
-.btn {padding:15px 40px;background:red;border:none;color:white;font-size:20px;}
+body {
+    background:black;
+    color:white;
+    text-align:center;
+    font-family:Arial;
+}
+
+.box {
+    margin-top:100px;
+}
+
+button {
+    padding:15px 40px;
+    font-size:20px;
+    background:red;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+button:hover {
+    background:darkred;
+}
 </style>
 </head>
 
 <body>
 
-<h1>تحميل SkKolD Mixer</h1>
-<p>عدد التحميلات: <span id="count">0</span></p>
-
-<button class="btn" onclick="download()">تحميل مباشر</button>
+<div class="box">
+    <h1>⬇ تحميل SkKolD Mixer</h1>
+    <p>اضغط الزر للتحميل المباشر</p>
+    <button onclick="download()">تحميل الآن</button>
+</div>
 
 <script>
-// عداد وهمي (Local)
-let count = localStorage.getItem("downloads") || 0;
-document.getElementById("count").innerText = count;
-
 function download(){
-    count++;
-    localStorage.setItem("downloads", count);
-    window.location.href="thanks.html";
+    window.location.href = "SkKolD-Mixer.zip";
 }
 </script>
 
